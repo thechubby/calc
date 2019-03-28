@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calc</title>
+
+</head>
+<body>
+<div id="root"></div>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+<script type='text/babel'>
+
+    class Calc extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                num: 0,
+                first: undefined,
+                second: 0,
+                flag: true
+            };
+            this.changeHandler = this.changeHandler.bind(this);
+            this.firstHandler = this.firstHandler.bind(this)
+        }
+
+        changeHandler(){ //привязка значения инпута к стейту
+            this.setState({ num: document.getElementById('textInput').value})
+
+        }
+
+        firstHandler(){
+            if (this.state.flag === true) {
+                this.setState({
+                    first: this.state.num,
+                    flag: false
+                })
+            } else {
+                this.setState({
+                    second: this.state.num,
+                    flag: true
+                })
+            }
+        }
+
+        render() {
+            return (<div>
+                <input type="text" id="textInput" onChange={this.changeHandler}/>
+                <button onClick={this.firstHandler}>плюс</button>
+
+
+                <p>num {this.state.num}</p>
+                <p>first {this.state.first}</p>
+                <p>second {this.state.second}</p>
+            </div>)
+        }
+    }
+    ReactDOM.render(
+        <Calc />,
+        document.querySelector('#root')
+    )
+</script>
+</body>
+</html>
