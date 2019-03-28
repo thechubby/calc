@@ -23,7 +23,7 @@
             this.calc = this.calc.bind(this);
         }
 
-        plus() {
+        plus(){
             this.setState({
                 result: Number.parseInt(document.getElementById('textInput').value)
             })
@@ -37,7 +37,7 @@
 
         render() {
             return (<div>
-                <input type="text" id="textInput" onChange={this.changeHandler}/>
+                <input type="text" id="textInput"/>
                 <button onClick={this.plus}>Плюс</button>
                 <button onClick={this.calc}>Результат</button>
                 <p id="result">Результат: {this.state.result}</p>
